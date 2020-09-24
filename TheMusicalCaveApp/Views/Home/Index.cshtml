@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TheMusicalCaveApp.Web.Models.Album>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    @Html.TextBox("Search", null, new { placeholder = "Search by Album" })
+    <input type="submit" value="Search" class="btn btn-success" />
+}
+
+<div class="row">
+
+    @foreach (var album in Model)
+    {
+        <div class="col-md-4">
+
+            <h2>@album.Title</h2>
+            <ul>
+                @foreach (var track in album.Tracks)
+                {
+                    <li>@track.Title</li>
+                }
+            </ul>
+        </div>
+    }
+</div>
